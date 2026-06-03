@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!-- Welcome Section -->
+
+<div class="mb-4">
+
+```
+<h1 class="dashboard-title">
+    Welcome, {{ user.username }}
+</h1>
+
+<p class="fs-5 text-light">
+    📍 City: {{ user.city }}
+</p>
+```
+
+</div>
+
+{% if weather %}
+
+<!-- Weather Cards -->
+
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-5 g-4">
+
+```
+<!-- Temperature Card -->
+
+<div class="col">
+
+    <div class="glass-card metric-card">
+
+        <i class="fa-solid fa-temperature-high"></i>
+
+        <div class="metric-value">
+            {{ weather.temperature }}°C
+        </div>
+
+        <div class="metric-title">
+            Temperature
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Wind Card -->
+
+<div class="col">
+
+    <div class="glass-card metric-card">
+
+        <i class="fa-solid fa-wind"></i>
+
+        <div class="metric-value">
+            {{ weather.wind_speed }}
+        </div>
+
+        <div class="metric-title">
+            Wind Speed (m/s)
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Humidity Card -->
+
+<div class="col">
+
+    <div class="glass-card metric-card">
+
+        <i class="fa-solid fa-droplet"></i>
+
+        <div class="metric-value">
+            {{ weather.humidity }}%
+        </div>
+
+        <div class="metric-title">
+            Humidity
+        </div>
+
+    </div>
+
+</div>
+
+<!-- AQI Card -->
+
+<div class="col">
+
+    <div class="glass-card metric-card">
+
+        <i class="fa-solid fa-smog"></i>
+
+        <div class="metric-value">
+            {{ weather.aqi }}
+        </div>
+
+        <div class="metric-title">
+            Air Quality Index
+        </div>
+
+        {% if weather.aqi == 1 %}
+            <span class="badge bg-success mt-2">
+                Good Air
+            </span>
+
+        {% elif weather.aqi == 2 %}
+            <span class="badge bg-info mt-2">
+                Fair
+            </span>
+
+        {% elif weather.aqi == 3 %}
+            <span class="badge bg-warning text-dark mt-2">
+                Moderate
+            </span>
+
+        {% elif weather.aqi == 4 %}
+            <span class="badge bg-danger mt-2">
+                Poor
+            </span>
+
+        {% else %}
+            <span class="badge bg-danger mt-2">
+                Very Poor
+            </span>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+<!-- Pressure Card -->
+
+<div class="col">
+
+    <div class="glass-card metric-card">
+
+        <i class="fa-solid fa-gauge-high"></i>
+
+        <div class="metric-value">
+            {{ weather.pressure }}
+        </div>
+
+        <div class="metric-title">
+            Pressure (hPa)
+        </div>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- Weather Summary Section -->
+
+<div class="glass-card mt-5">
+
+```
+<h3 class="mb-4">
+    🌦 Current Weather Summary
+</h3>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <p>
+            <strong>🌡 Temperature:</strong>
+            {{ weather.temperature }}°C
+        </p>
+
+        <p>
+            <strong>💧 Humidity:</strong>
+            {{ weather.humidity }}%
+        </p>
+
+        <p>
+            <strong>💨 Wind Speed:</strong>
+            {{ weather.wind_speed }} m/s
+        </p>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <p>
+            <strong>⚡ Pressure:</strong>
+            {{ weather.pressure }} hPa
+        </p>
+
+        <p>
+            <strong>🌫 AQI:</strong>
+            {{ weather.aqi }}
+        </p>
+
+        <p>
+            <strong>📍 City:</strong>
+            {{ weather.city }}
+        </p>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+{% else %}
+
+<!-- Error Message -->
+
+<div class="alert alert-danger text-center">
+
+```
+<h4>
+    Unable to fetch weather data
+</h4>
+
+<p>
+    Please check:
+</p>
+
+<ul class="list-unstyled">
+
+    <li>✔ OpenWeather API Key</li>
+    <li>✔ Internet Connection</li>
+    <li>✔ City Name</li>
+
+</ul>
+```
+
+</div>
+
+{% endif %}
+
+<!-- Auto Refresh Every 5 Minutes -->
+
+<script>
+
+setTimeout(() => {
+
+    location.reload();
+
+}, 300000);
+
+</script>
+
+{% endblock %}

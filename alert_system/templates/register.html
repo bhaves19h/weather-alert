@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card auth-card">
+
+    <h2 class="text-center mb-4">
+        Create Account
+    </h2>
+
+    <form method="POST">
+
+        <input
+            type="text"
+            name="username"
+            class="form-control mb-3"
+            placeholder="Username"
+            required
+        >
+
+        <input
+            type="email"
+            name="email"
+            class="form-control mb-3"
+            placeholder="Email"
+            required
+        >
+
+        <input
+            type="text"
+            name="city"
+            class="form-control mb-3"
+            placeholder="City"
+            required
+        >
+
+        <input
+            type="password"
+            name="password"
+            class="form-control mb-3"
+            placeholder="Password"
+            required
+        >
+
+        <button class="btn btn-weather">
+            Register
+        </button>
+
+    </form>
+
+    <div class="text-center mt-3">
+
+        <a href="/login" class="text-light">
+            Already have an account?
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}

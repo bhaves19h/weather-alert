@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="glass-card auth-card">
+
+    <h2 class="text-center mb-4">
+        Login
+    </h2>
+
+    <form method="POST">
+
+        <input
+            type="email"
+            name="email"
+            class="form-control mb-3"
+            placeholder="Email"
+            required
+        >
+
+        <input
+            type="password"
+            name="password"
+            class="form-control mb-3"
+            placeholder="Password"
+            required
+        >
+
+        <button class="btn btn-weather">
+            Login
+        </button>
+
+    </form>
+
+    <div class="text-center mt-3">
+
+        <a href="/register" class="text-light">
+            Create Account
+        </a>
+
+    </div>
+
+</div>
+
+{% endblock %}
